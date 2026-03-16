@@ -1,14 +1,47 @@
-html
+doctype html
+html(lang="ru")
   head
-    title todo list
-    style 
-      include style.css
-    
+    meta(charset="UTF-8")
+    title Задания Fastify
+    style.
+      body { font-family: sans-serif; max-width: 600px; margin: 40px auto; line-height: 1.6; }
+      section { border: 1px solid #ccc; padding: 20px; border-radius: 8px; margin-bottom: 30px; background: #f9f9f9; }
+      h2 { margin-top: 0; color: #333; }
+      .form-group { margin-bottom: 15px; }
+      label { display: block; font-weight: bold; margin-bottom: 5px; }
+      input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+      button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+      button:hover { background: #0056b3; }
+      .hint { font-size: 0.85em; color: #666; }
+
   body
-    h1 колво задач #{name}
-    p список задач 
-    div
-    input(type="text")
-    button добавить задачу
-    div
-    button удалить задачу
+    h1 Мои задания на Fastify
+
+    //- ЗАДАНИЕ 1: АВТОМОБИЛЬ
+    section
+      h2 1. Регистрация автомобиля
+      form(method="POST" action="/cars")
+        .form-group
+          label Марка:
+          input(name="make" placeholder="Напр: Tesla" required)
+        .form-group
+          label Модель:
+          input(name="model" placeholder="Напр: Model S" required)
+        .form-group
+          label Год выпуска:
+          input(type="number" name="year" min="1886" max=currentYear value=currentYear required)
+        .form-group
+          label Владельцы (через запятую):
+          input(name="owners" placeholder="Иван, Петр, Мария")
+          p.hint Эти данные будут проверены схемой и превратятся в массив.
+        button(type="submit") Зарегистрировать авто
+
+    //- ЗАДАНИЕ 2: СЕКРЕТНЫЙ РЕЦЕПТ
+    section
+      h2 2. Секретный рецепт
+      form(method="POST" action="/secret-recipe-form")
+        .form-group
+          label Ингредиенты (через запятую):
+          input(name="ingredientsString" placeholder="сыр, помидоры, базилик" required)
+          p.hint Сервер объединит их и захеширует через bcrypt.
+        button(type="submit" style="background: #28a745") Создать секретный код
